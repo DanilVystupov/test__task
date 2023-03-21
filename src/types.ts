@@ -1,4 +1,4 @@
-export type CartItemType = {
+export type CardItemType = {
   id: number;
   name: string;
   email: string;
@@ -8,21 +8,21 @@ export type CartItemType = {
   thumbnailUrl: string;
 };
 
-export type PhotosProps = {
-  addToCart: (photo: CartItemType) => void;
+export type CardsProps = {
+  addToCard: (card: CardItemType) => void;
 };
 
-export type PhotoProps = {
-  photo: CartItemType;
-  addToCart: (photo: CartItemType) => void;
+export type CardItemProps = {
+  card: CardItemType;
+  addToCard: (card: CardItemType) => void;
 };
 
-export type PhotoCartProps = {
-  cartItems: CartItemType[];
-  addToCart: (photo: CartItemType) => void;
+export type CardBasketProps = {
+  cardItems: CardItemType[];
+  setCardItems: React.Dispatch<React.SetStateAction<CardItemType[]>>;
 };
 
-export type PhotoListProps = {
-  photos: CartItemType[];
-  addToCart: (photo: CartItemType) => void;
+export type CardListProps = {
+  cards: CardItemType[];
+  addToCard: (card: CardItemType) => void;
 };

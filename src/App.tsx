@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { CartItemType } from './types';
-import PhotoCart from './components/PhotoCart';
-import PhotoPage from './components/PhotoPage';
-import Photos from './pages/Photos';
+import { CardItemType } from './types';
+import CardBasket from './components/CardBasket';
+import CardIdPage from './components/CardIdPage';
+import CardListContainer from './pages/CardListContainer';
 
 function App(): JSX.Element {
-  const [cartItems, setCartItems] = useState<CartItemType[]>([]);
+  const [cardItems, setCardItems] = useState<CardItemType[]>([]);
 
-  const addToCart = (photo: CartItemType) => {
-    setCartItems([...cartItems, photo]);
+  const addToCard = (card: CardItemType) => {
+    setCardItems([...cardItems, card]);
   };
+
 
   return (
     <Router>
@@ -20,15 +21,20 @@ function App(): JSX.Element {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/cart">Корзина: {cartItems.length}</Link>
+            <Link to="/cart">Корзина: {cardItems.length}</Link>
           </li>
         </ul>
       </nav>
 
       <Routes>
-        <Route path="/" element={<Photos addToCart={addToCart} />} />
-        <Route path="/cart" element={<PhotoCart addToCart={addToCart} cartItems={cartItems} />} />
-        <Route path="/photos/:id" element={<PhotoPage />} />
+        <Route path="/" element={<CardListContainer addToCard={addToCard} />} />
+        <Route path="/cart" element={
+          <CardBasket
+            cardItems={cardItems}
+            setCardItems={setCardItems}
+          />}
+        />
+        <Route path="/photos/:id" element={<CardIdPage />} />
       </Routes>
     </Router>
   );
